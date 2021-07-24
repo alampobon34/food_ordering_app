@@ -1,0 +1,19 @@
+{% extends 'base1.html' %}
+{%load static%}
+{% load crispy_forms_tags %}
+{% block title %}all-restaurants{% endblock title %}
+{% block body %}
+
+all restaurant page
+
+{% for rest in restaurants %}
+{{rest.name}}
+<br>
+{% endfor %}
+
+
+{% for cat in cat %}
+{{cat.name}}
+<br>
+{% endfor %}
+{% endblock body %}

@@ -4,5 +4,5 @@ from restaurantApp.models import *
 
 
 admin.site.register(Restaurant)
-admin.site.register(Menu)
+admin.site.register(Category)
 admin.site.register(FoodItem)

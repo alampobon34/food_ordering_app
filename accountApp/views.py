@@ -5,12 +5,22 @@ from django.contrib.auth.forms import PasswordChangeForm
 from accountApp.forms import *
 from django.contrib import messages
 from accountApp.models import *
+from restaurantApp.models import *
 
 # Create your views here.
 
 
 def index(request):
-    return render(request,'home.html')
+    restaurants = Restaurant.objects.all()
+    r = Restaurant.objects.get(id=3)
+    print(r.id)
+    cat = r.category.all()
+    print(cat)
+    context = {
+        'restaurants':restaurants,
+        'cat':cat,
+    }
+    return render(request,'home.html',context) 
 
 
 # def login_page(request):
