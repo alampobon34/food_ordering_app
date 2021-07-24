@@ -1,0 +1,73 @@
+{% extends 'base1.html' %} {% load static %} {% block title %}Customer
+{%load static%}
+{% load crispy_forms_tags %}
+Registration{% endblock title %} {% block body %}
+<div class="container">
+  <div class="row my-3">
+    <div class="col-sm-6 offset-sm-3">
+      <h3 class="text-center">Registration Here</h3>
+      <hr />
+
+      <form action="" method="post" class="shadow p-5 needs-validation" id="form" name="registerForm" onsubmit="return RegisterValidation()" novalidate>
+         {% csrf_token %}
+        <div class="mb-3 form-group" id="reg_username">
+          <label for="reg_username" class="form-label">Username</label>
+          {{ form.username|as_crispy_field }}
+          <small id="emailHelp" class="form-text text-danger"></small>
+        </div>
+        <div class="mb-3 form-group" id="reg_email">
+          <label for="reg_email" class="form-label">Email</label>
+          {{ form.email|as_crispy_field }}
+          <small id="emailHelp" class="form-text text-danger"></small>
+        </div>
+        <div class="mb-3 form-group" id="reg_password1">
+          <label for="reg_password1" class="form-label">Password</label>
+          {{ form.password1|as_crispy_field }}
+          <small id="emailHelp" class="form-text text-danger"></small>
+
+        </div>
+        <div class="mb-3 form-group" id="reg_password2">
+          <label for="reg_password2" class="form-label"
+            >Confirm Password</label
+          >
+          {{ form.password2|as_crispy_field }}
+          <small id="emailHelp" class="form-text text-danger"></small>
+        </div>
+        <div class="text-end">
+          <button type="submit" class="btn btn-outline-secondary container-fluid">Submit</button>
+        </div>
+        <br />
+        <div class="text-center text-primary fw-bold">
+          <small
+            >Already Have Account ?
+            <a href="{% url 'login' %}" class="text-danger">Login Now</a>
+          </small>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- <script src="{% static 'js/validate.js' %}"></script> -->
+<script>
+//   // Example starter JavaScript for disabling form submissions if there are invalid fields
+// (function () {
+//     'use strict'
+  
+//     // Fetch all the forms we want to apply custom Bootstrap validation styles to
+//     var forms = document.querySelectorAll('.needs-validation')
+  
+//     // Loop over them and prevent submission
+//     Array.prototype.slice.call(forms)
+//       .forEach(function (form) {
+//         form.addEventListener('submit', function (event) {
+//           if (!form.checkValidity()) {
+//             event.preventDefault()
+//             event.stopPropagation()
+//           }
+  
+//           form.classList.add('was-validated')
+//         }, false)
+//       })
+//   })()
+// </script>
+{% endblock body %}
