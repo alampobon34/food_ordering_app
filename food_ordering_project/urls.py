@@ -23,6 +23,7 @@ from restaurantApp.views import *
 urlpatterns = [
     path('',include('accountApp.urls')),
     path('',include('restaurantApp.urls')),
+    path('',include('orderApp.urls')),
     path('admin/', admin.site.urls),
 ]
 if settings.DEBUG:

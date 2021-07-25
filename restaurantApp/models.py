@@ -24,7 +24,7 @@ class Category(models.Model):
     image = models.ImageField(blank=True,null=True,upload_to='Category-images/')
 
     def __str__(self):
-        return self.name
+        return self.name + ' ' + self.restaurant.name
 
 
 class FoodItem(models.Model):
