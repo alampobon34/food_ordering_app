@@ -6,5 +6,5 @@ from orderApp.views import *
 
 
 urlpatterns = [
-
+    path('cart/',cart,name='cart'),
 ]

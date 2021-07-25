@@ -84,7 +84,7 @@
              </li>
             {% endif %}
             <li class="nav-item mx-2">
-              <a href="{% url 'cart' %}" class="nav-link text-white"><span class="badge bg-danger">4</span> <i class="fas fa-shopping-cart"></i> </a>
+              <a href="{% url 'cart' %}" class="nav-link text-white"><span class="badge bg-danger">{{order.get_cart_items}}</span> <i class="fas fa-shopping-cart"></i> </a>
              </li>
           </ul>
          </div>
@@ -109,6 +109,8 @@
     <script src="{% static 'js/owl.carousel.min.js' %}"></script>
     <script src="{% static 'js/all.min.js' %}"></script>
     <script src="{% static 'js/myscript.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
   </body>
   <script src="{% static 'js/formValidation.js' %}"></script>
+  
 </html>

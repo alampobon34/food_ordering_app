@@ -6,14 +6,25 @@ from accountApp.forms import *
 from django.contrib import messages
 from accountApp.models import *
 from restaurantApp.models import *
+from orderApp.models import *
 
 # Create your views here.
 
 
 def index(request):
     restaurants = Restaurant.objects.all()
+    if request.user.is_authenticated:
+        customer = request.user.profile
+        order, created = Order.objects.get_or_create(customer=customer,status='Pending')
+        items = order.orderitem_set.all()
+        
+    else:
+        items = []
+        order = {'get_cart_total':0, 'get_cart_item':0}
     context = {
         'restaurants':restaurants,
+        'order':order,
+        'items':items,
     }
     return render(request,'home.html',context) 
 
@@ -83,8 +94,7 @@ def logout_user(request):
     messages.success(request,'Logout Successfully....!!')
     return redirect('login')
 
-def cart(request):
-    return render(request,'addtocart.html')
+
 
 
 def profile(request):
