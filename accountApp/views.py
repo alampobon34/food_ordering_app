@@ -12,13 +12,8 @@ from restaurantApp.models import *
 
 def index(request):
     restaurants = Restaurant.objects.all()
-    r = Restaurant.objects.get(id=3)
-    print(r.id)
-    cat = r.category.all()
-    print(cat)
     context = {
         'restaurants':restaurants,
-        'cat':cat,
     }
     return render(request,'home.html',context) 
 
