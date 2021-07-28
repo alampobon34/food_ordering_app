@@ -119,8 +119,6 @@ class Profile(models.Model):
     image = models.ImageField(null=True, blank=True,upload_to='user_img', default='pic.png')
 
     
-
-
     def __str__(self):
         return self.user.email
 

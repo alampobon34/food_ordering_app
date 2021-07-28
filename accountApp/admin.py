@@ -8,5 +8,13 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ['email','username']
 
 admin.site.register(User,UserAdmin)
-admin.site.register(Profile)
-admin.site.register(Address)
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'gender','phone','birthDate','image']
+admin.site.register(Profile,ProfileAdmin)
+
+
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ['user', 'area','houseNo','roadNo','zipCode']
+
+admin.site.register(Address,AddressAdmin)

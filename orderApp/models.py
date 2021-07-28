@@ -19,7 +19,7 @@ class Order(models.Model):
 	transaction_id = models.CharField(max_length=100, null=True,blank=True)
 
 	def __str__(self):
-		return str(self.id) + ' ' + self.customer.user.username
+		return 'UserName: ' + self.customer.user.username
 		
 	@property
 	def get_cart_total(self):
@@ -32,6 +32,8 @@ class Order(models.Model):
 		orderitems = self.orderitem_set.all()
 		total = sum([item.quantity for item in orderitems])
 		return total 
+	
+
 
 
 class OrderItem(models.Model):
@@ -46,7 +48,15 @@ class OrderItem(models.Model):
 		return total
 
 	def __str__(self):
-		return "ID: " + str(self.order.id) + ' ' + self.product.name
+		return self.product.name
+	
+	@property
+	def get_category(self):
+		return self.product.category
+
+	@property
+	def get_restaurant(self):
+		return self.product.category.restaurant
 
 class ShippingAddress(models.Model):
 	customer = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)

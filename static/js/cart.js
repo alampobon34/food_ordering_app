@@ -1,10 +1,38 @@
-var update_cart = document.getElementsByClassName("update-cart")
+var updateBtns = document.getElementsByClassName("update-cart")
 
-for(var i=0; i<update_cart.length; i++){
-    var button = update_cart[i]
+for(var i=0; i<updateBtns.length; i++){
+    var button = updateBtns[i]
     button.addEventListener('click', function() {
-        console.log("button clicked")
-        var target = event.target.parentElement.parentElement.parentElement
-        console.log(target)
+        //console.log("button clicked")
+        var item_id = this.dataset.fooditem
+        var action = this.dataset.action
+        if(user=='AnonymousUser'){
+            console.log('not logged in')
+        }else{
+            updateUserOrder(item_id,action)
+        }
+    })
+}
+
+
+function updateUserOrder(item_id, action){
+    console.log("User is logged in sending data")
+
+    var url = '/update_item/'
+    fetch(url, {
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json',
+            'X-CSRFToken':csrftoken,
+        },
+        body:JSON.stringify({'item_id': item_id, 'action':action})
+    })
+
+    .then((response)=>{
+        return response.json()
+    })
+
+    .then((data)=>{
+        console.log('data',data)
     })
 }

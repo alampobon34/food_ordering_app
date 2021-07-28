@@ -24,7 +24,11 @@ class Category(models.Model):
     image = models.ImageField(blank=True,null=True,upload_to='Category-images/')
 
     def __str__(self):
-        return self.name + ' ' + self.restaurant.name
+        return self.name
+    
+    @property
+    def get_restaurant(self):
+        return self.restaurant.name
 
 
 class FoodItem(models.Model):
@@ -34,4 +38,12 @@ class FoodItem(models.Model):
     image = models.ImageField(blank=True,null=True,upload_to='FoodItem-images')
 
     def __str__(self):
-        return self.name
+        return self.name + " " + "(" + self.category.restaurant.name + ")"
+
+    @property
+    def get_restaurant(self):
+        return self.category.restaurant.name
+
+    @property
+    def get_category(self):
+        return self.category.name

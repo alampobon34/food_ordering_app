@@ -3,6 +3,26 @@ from .models import *
 # Register your models here.
 
 
-admin.site.register(Order)
-admin.site.register(OrderItem)
-admin.site.register(ShippingAddress)
+
+
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['customer', 'date_ordered','get_cart_total','get_cart_items','status']
+    search_fields = ['status']
+
+admin.site.register(Order,OrderAdmin)
+
+
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ['get_restaurant','get_category','product', 'order','quantity']
+    search_fields = ['order']
+
+
+admin.site.register(OrderItem,OrderItemAdmin)
+
+
+class ShippingAddressemAdmin(admin.ModelAdmin):
+    list_display = ['customer','order','area', 'houseNo','zipcode']
+    search_fields = ['order']
+
+admin.site.register(ShippingAddress,ShippingAddressemAdmin)

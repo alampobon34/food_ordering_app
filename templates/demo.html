@@ -1,0 +1,63 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+{% block body %}
+<div class="container mt-4">
+  <h3 class="text-center">Shopping cart</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 border rounded">
+        <table class="table">
+          <thead class="text-muted">
+            <tr class="small text-uppercase">
+              <th class="text-center" scope="col" width="120">Product</th>
+              <th class="text-center" scope="col" width="120">Quantity</th>
+              <th class="text-center" scope="col" width="120">Subtotal</th>
+              <th class="text-center" scope="col"width="120">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in items %}
+            <tr>
+              <td>
+                <figure class="itemside align-item-center">
+                  <div class="aside"><img src="{{item.product.image.url}}" class="img-sm" height="70px" width="70 px">
+                  </div>
+                  <figcaption class="info">
+                    <a href="#" class="title-text-dark">{{item.product.name}}</a>
+                    <p class="text-muted small">text</p>
+                  </figcaption>
+                </figure>
+              </td>>
+              <td>
+                <div class="d-flex">
+                  <a class="minus-cart btn"><i class="fas fa-minus-square fa-lg"></i></a>
+                    <span class="m-auto" id="quantity">3</span>
+                  <a class="plus-cart btn"><i class="fas fa-plus-square fa-lg"></i></a>
+                 </div> 
+              </td>
+              <td>
+                <div class="price-wrap mt-2">
+                  <h5 class="price text-bold">BDT{{item.product.price}}</h5>
+                </div>
+              </td>
+              <td>
+                <div class="text-right">
+                  <a href="#" class="btn btn-danger">Remove</a>
+                </div>
+              </td>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-4 border rounded">
+        <h3 class="text-center">Total Amount</h3>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
+
+
+
+
