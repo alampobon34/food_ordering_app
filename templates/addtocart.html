@@ -16,9 +16,9 @@
         <p class="mb-2 text-muted small">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quas, nihil vel velit sed, quos consequatur maiores odio libero eius est in mollitia quo minus dolorum culpa consectetur, ipsam unde!</p>
         <div class="my-3">
          <label for="quantity">Quantity:</label>
-         <a class="minus-cart btn"><i class="fas fa-minus-square fa-lg"></i></a>
-           <span id="quantity">{{item.quantity}}</span>
-         <a class="pl us-cart btn"><i class="fas fa-plus-square fa-lg"></i></a>
+         <button  class="btn update-cart" data-item="{{item.product.id}}" data-action="remove"><i class="fas fa-minus-square fa-lg" ></i></button>
+          <span id="quantity">{{item.quantity}}</span>
+         <button  class="btn update-cart" data-item="{{item.product.id}}" data-action="add"><i class="fas fa-plus-square fa-lg" ></i></button>
         </div> 
         <div class="d-flex justify-content-between">
          <button href="#" class="btn btn-sm btn-secondary mr-3 item-remove">Remove item </button>

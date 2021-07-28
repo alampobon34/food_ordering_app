@@ -1,4 +1,5 @@
 var updateBtns = document.getElementsByClassName("update-cart")
+var obj;
 
 for(var i=0; i<updateBtns.length; i++){
     var button = updateBtns[i]
@@ -34,5 +35,22 @@ function updateUserOrder(item_id, action){
 
     .then((data)=>{
         console.log('data',data)
+        location.reload()
+
+    })
+
+}
+
+
+var change= document.getElementsByClassName("update-cart")
+
+for(var i=0; i<change.length; i++){
+    change[i].addEventListener('click',function(){
+        var item_id = this.dataset.item
+        var action = this.dataset.action
+        console.log(item_id)
+        console.log(action)
+        updateUserOrder(item_id,action)
+
     })
 }
