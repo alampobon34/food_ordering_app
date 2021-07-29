@@ -6,7 +6,9 @@ from orderApp.views import *
 
 
 urlpatterns = [
+    path('update_item/',updateItem,name='update_item'),
     path('cart/',cart,name='cart'),
-    path('update_item/',updateItem,name='update_item')
+    path('checkout/',checkout,name='checkout'),
+    
 
 ]

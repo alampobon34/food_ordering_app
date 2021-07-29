@@ -118,8 +118,7 @@ def buy_now(request):
     return render(request,'buynow.html')
 
 
-def checkout(request):
-    return render(request,'checkout.html')
+
 
 
 def details(request):

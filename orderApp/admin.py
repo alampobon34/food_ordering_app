@@ -7,8 +7,8 @@ from .models import *
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['customer', 'date_ordered','get_cart_total','get_cart_items','status']
-    search_fields = ['status']
+    list_display = ['customer', 'date_ordered','grand_total','get_cart_items','status','is_complete']
+    search_fields = ['status','is_complete']
 
 admin.site.register(Order,OrderAdmin)
 

@@ -5,9 +5,9 @@
 <div class="container">
  <div class="row mt-5">
   <div class="col-sm-6">
-    <h4>Order Summary</h4>
+    <h5>Shipping Address</h5>
     <hr>
-      <div class="card mb-2">
+      <div class="card p-0">
         <div class="card-body">
           <h5>Product: Product 1</h5>
           <p>Quantity: 2</p>
@@ -16,26 +16,28 @@
       </div>
     <small>Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil in et quis?</small>
   </div>
-  <div class="col-sm-4 offset-sm-1">
-    <h4>Select Shipping Address</h4>
-    <hr>
-    <form action="">
-      <div class="card">
-        <div class="card-body">
-        <h5>Sonam Kumari</h5>
-        <p>Hirapur Dhanbad Jharkahnd</p>
-        </div>
+  <div class="col-sm-4">
+    <div class="box-element">
+      <h5>Order Summary</h5>
+      <hr>
+      {% for item in orderItems %}
+      <div class="cart-row d-flex mb-2">
+        <div style="flex:2 p-4 mb-4"><img class="row-image" style="width:70px;" src="{{item.product.image.url}}"></div>
+        <div style="flex:2"><p class="p-2">{{item.product.name}}</p></div>
+        <div style="flex:1"><p class="p-2">${{item.product.price}}</p></div>
+        <div style="flex:1"><p class="p-2">x{{item.quantity}}</p></div>
       </div>
-        <div class="form-check mt-2 mb-5">
-          <input class="form-check-input" type="radio" value="">
-          <label class="form-check-label fw-bold" for="">
-            Address: 1 </label>
-        </div>
-        <div class="text-end">
-          <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>
-        </div>
-      </form>
+      {% endfor %}
+      <hr>
+      <div class="container">
+        <h4 class="d-flex mt-2">Total:<p class="m-auto p-auto text-right">BDT.{{grand_total}}</p></h4>
+      </div>
+      
     </div>
+  </div>
+  </div>
+  <div class="row p-4 m-5">
+
   </div>
 </div>
 {% endblock body %}
