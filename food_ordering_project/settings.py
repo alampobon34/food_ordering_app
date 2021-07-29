@@ -26,9 +26,9 @@ MEDIA_DIR = os.path.join(BASE_DIR,'media')
 SECRET_KEY = 'django-insecure-rb6p*f!a_wh2y*_9kqtrj#58s$&!0rrt1ml3uhh=&uvi*02y!5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['food-ordering-bd.herokuapp.com/','127.0.0.1']
 
 
 # Application definition
@@ -51,6 +51,7 @@ AUTH_USER_MODEL = 'accountApp.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
