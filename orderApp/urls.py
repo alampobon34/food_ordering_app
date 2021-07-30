@@ -8,7 +8,7 @@ from orderApp.views import *
 urlpatterns = [
     path('update_item/',updateItem,name='update_item'),
     path('cart/',cart,name='cart'),
-    path('checkout/',checkout,name='checkout'),
+    path('checkout/',check,name='checkout'),
     
 
 ]

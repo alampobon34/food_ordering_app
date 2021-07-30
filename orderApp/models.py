@@ -38,7 +38,11 @@ class Order(models.Model):
 	@property
 	def grand_total(self):
 		orderitems = self.orderitem_set.all()
-		total = sum([item.get_total for item in orderitems]) + self.shipping_charge
+		total = sum([item.get_total for item in orderitems])
+		if total >0:
+			total +=self.shipping_charge
+		else:
+			self.shipping_charge = 0.00
 		return total 
 	
 

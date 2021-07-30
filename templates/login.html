@@ -48,5 +48,16 @@
  </div>
 </div>
 
-
 {% endblock body %}
+
+{% block JS %}
+<script>
+if(user=='Anonymous'){
+    var cart_total = document.getElementById('cart-total')
+
+    console.log(cart_total)
+  }
+
+</script>
+
+{% endblock JS %}

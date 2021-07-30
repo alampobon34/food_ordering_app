@@ -2,6 +2,7 @@ from django.contrib import auth
 from django.contrib.auth import authenticate, login,logout
 from django.shortcuts import redirect, render,HttpResponse
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.decorators import login_required
 from accountApp.forms import *
 from django.contrib import messages
 from accountApp.models import *
@@ -14,17 +15,20 @@ from orderApp.models import *
 def index(request):
     restaurants = Restaurant.objects.all()
     if request.user.is_authenticated:
-        customer = request.user.profile
-        order, created = Order.objects.get_or_create(customer=customer,status='Pending')
-        items = order.orderitem_set.all()
-        
+        try:
+            customer = request.user.profile
+            order= Order.objects.get(customer=customer,is_complete=False)
+            orderItems = OrderItem.objects.filter(order=order)
+            cartObjects = orderItems.count()
+        except:
+            cartObjects = 0
+
     else:
-        items = []
-        order = {'get_cart_total':0, 'get_cart_item':0}
+        cartObjects = 0
     context = {
         'restaurants':restaurants,
-        'order':order,
-        'items':items,
+        'cartObjects':cartObjects,
+
     }
     return render(request,'home.html',context) 
 
@@ -43,7 +47,10 @@ def index(request):
 #             return render(request, 'login.html')
 #     return render(request, 'login.html')
 
+
+
 def login_page(request):
+    cartObjects = 0
     if request.POST:
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -64,11 +71,13 @@ def login_page(request):
     form = LoginForm()
     context = {
         'form': form,
+        'cartObjects':cartObjects
     }
     return render(request, 'login.html', context)
 
 
 def register(request):
+    cartObjects = 0
     if request.method=='POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -84,7 +93,7 @@ def register(request):
             context ={'form':form}
             return render(request, 'customerregistration.html', context)
     form = UserRegistrationForm()
-    context ={'form':form}
+    context ={'form':form,'cartObjects':cartObjects}
     return render(request, 'customerregistration.html',context)
 
 
@@ -98,6 +107,8 @@ def logout_user(request):
 
 
 def profile(request):
+    
+
     return render(request,'profile.html')
 
 
@@ -141,7 +152,20 @@ def mobile(request):
     return render(request, 'mobile.html',context)
 
 
+
+@login_required(login_url="login")
 def change_password(request):
+    if request.user.is_authenticated:
+        try:
+            customer = request.user.profile
+            order= Order.objects.get(customer=customer,is_complete=False)
+            orderItems = OrderItem.objects.filter(order=order)
+            cartObjects = orderItems.count()
+        except:
+            cartObjects = 0
+
+    else:
+        cartObjects = 0
     
     if request.method== "POST":
 
@@ -158,7 +182,8 @@ def change_password(request):
             form = PasswordChangingForm(user=request.user,data=request.POST)
     else:
         form = PasswordChangingForm(user=request.user)
-    context = {'form' : form}
+    context = {'form' : form,
+                'cartObjects':cartObjects}
     return render(request,'changepassword.html',context)
 
 
@@ -178,10 +203,23 @@ def cp(request):
     return render(request,'userProfile.html',context)
 
 
+
+@login_required(login_url="login")
 def userProfile(request):
+    if request.user.is_authenticated:
+        try:
+            customer = request.user.profile
+            order= Order.objects.get(customer=customer,is_complete=False)
+            orderItems = OrderItem.objects.filter(order=order)
+            cartObjects = orderItems.count()
+        except:
+            cartObjects = 0
+
+    else:
+        cartObjects = 0
+
     pk = request.user.address.pk
     address = Address.objects.get(pk=pk)
-    print('add',pk,address.houseNo)
     if request.method=="POST":
         u_form = UserUpdateForm(request.POST,instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES,instance=request.user.profile)
@@ -193,17 +231,32 @@ def userProfile(request):
             u_form = UserUpdateForm(request.POST,instance=request.user)
             p_form = ProfileUpdateForm(request.POST, request.FILES,instance=request.user.profile)
             context = {'u_form' : u_form,
-                        'p_form':p_form}
+                        'p_form':p_form,
+                        'orderItems':orderItems,
+                        'grand_total':grand_total,
+                        'cartItems':cartItems}
             return render(request, 'userProfile.html',context)
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
-        context = {'u_form' : u_form,'p_form':p_form,'address':address}
+        context = {'u_form' : u_form,'p_form':p_form,'address':address,
+                    'cartObjects':cartObjects,}
         return render(request, 'userProfile.html',context)
 
 
-
+@login_required(login_url="login")
 def address_update(request):
+    if request.user.is_authenticated:
+        try:
+            customer = request.user.profile
+            order= Order.objects.get(customer=customer,is_complete=False)
+            orderItems = OrderItem.objects.filter(order=order)
+            cartObjects = orderItems.count()
+        except:
+            cartObjects = 0
+
+    else:
+        cartObjects = 0
     if request.method=="POST":
         a_form = AddressUpdateForm(request.POST,instance=request.user.address)
         if a_form.is_valid():
@@ -211,9 +264,12 @@ def address_update(request):
             return redirect('userProfile')
         else:
             a_form = AddressUpdateForm(request.POST,instance=request.user.address)
-            context = {'a_form' : a_form}
+            context = {'a_form' : a_form,
+                        'cartObjects':cartObjects,
+            }
             return render(request,'addressUpdate.html',context)
 
     a_form = AddressUpdateForm(instance=request.user.address)
-    context = {'a_form' : a_form}
+    context = {'a_form' : a_form,
+            'cartObjects':cartObjects,}
     return render(request, 'addressUpdate.html',context)
