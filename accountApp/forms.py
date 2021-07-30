@@ -192,7 +192,7 @@ class AddressUpdateForm(forms.ModelForm):
         fields = ['address','area','houseNo','roadNo','zipCode']
 
     widgets = {
-        'address': TextInput(attrs={'class': 'form-control', 'placeholder': 'birth_date','type':'textarea'}),
+        'address': TextInput(attrs={'class': 'form-control', 'placeholder': 'Address','type':'textarea'}),
         'area': Select(attrs={'class':'form-control form-select', 'placeholder': 'gender','aria-label': 'Default select example'}, choices=CITY),
         'houseNo': TextInput(attrs={'class': 'form-control', 'placeholder': 'enter your house no.','type':'text'}),
         'roadNo': TextInput(attrs={'class': 'form-control','type':'text'}),

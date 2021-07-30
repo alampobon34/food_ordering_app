@@ -34,3 +34,15 @@
     height: 20vw;
     object-fit: cover;
 }
+
+#image{
+    margin-left: 10px;
+}
+
+#name{
+    margin: auto;
+}
+
+#qty{
+    margin-right: 5px;
+}
