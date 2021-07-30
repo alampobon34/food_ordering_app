@@ -14,7 +14,6 @@ urlpatterns = [
     path('address/',address,name='address'),
     path('changepassword/',change_password,name='change_password'),
     path('buynow/',buy_now,name='buynow'),
-    
     path('detail/',details,name='detail'),
     path('mobile/',mobile,name='mobile'),
     path('cp/',cp,name='cp'),
