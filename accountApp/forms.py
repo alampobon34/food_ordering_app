@@ -115,9 +115,6 @@ class PasswordChangingForm(PasswordChangeForm):
 
 
 
-
-
-
 class UserUpdateForm(UserChangeForm):
     
     first_name =forms.CharField(
@@ -181,11 +178,6 @@ class AddressUpdateForm(forms.ModelForm):
     #address_type = forms.TextInput()
     # address = forms.CharField(widget=forms.Textarea(attrs={'class' : 'form-control'}))
     # houseNo = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    # roadNo = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    # zipCode = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-
-
-
 
     class Meta:
         model = Address
