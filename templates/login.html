@@ -2,6 +2,8 @@
 {%load static%}
 {% load crispy_forms_tags %}
 {% block title %}Login{% endblock title %}
+
+
 {% block body %}
 <div class="container">
  <div class="row my-3">
@@ -9,35 +11,32 @@
    <h3 class="text-center">Login Here</h3>
    <hr>
 
-   <form action="" method="post" class="form shadow p-5 needs-validation" novalidate id="loginform" name="loginForm" onsubmit="return loginValidation()">
+   <form action="" method="post" class="form shadow p-5" novalidate id="loginForm">
     {% csrf_token %}
     
-    <div class="bg-light">
+    <div class="bg-light" id="msg">
         {% for message in messages %}
 
         <div class="alert alert-danger">
 
-            <h6 class="text-center">{{ message }}</h6>
+            <h6 class="text-center" id="msg-info">{{ message }}</h6>
 
         </div>
         {% endfor %}
     </div>
-    <div class="mb-3 has-validation" id="login_email">
+    <div class="mb-3 email" id="login_email">
      <label for="email" class="form-label">Email Address</label>
      {{ form.email|as_crispy_field }}
-     <small id="emailHelp" class="form-text text-danger"></small>
-     <div class="invalid-feedback">
-        <small id="emailHelp" class="form-text text-danger"></small>
-      </div>
+     <h5 id="emailHelp" class="form-text text-danger"></h5>
     </div>
-    <div class="mb-3 has-validation" id="login_password">
+    <div class="mb-3 password" id="login_password">
      <label for="password" class="form-label">Password</label>
      {{ form.password|as_crispy_field }}
-     <small id="emailHelp" class="form-text text-danger"></small>
+     <h5 id="passwordHelp" class="form-text text-danger"></h5>
     </div>
     <small><a href="#">Forgot Password ?</a></small> <br>
     <div>
-        <input type="submit" class="btn btn-outline-secondary mt-2 container-fluid" value="Login">
+        <input type="submit" class="btn btn-outline-secondary mt-2 container-fluid" value="Login" id="login_btn" >
     </div>
     
     <br>
@@ -51,13 +50,10 @@
 {% endblock body %}
 
 {% block JS %}
-<script>
-if(user=='Anonymous'){
-    var cart_total = document.getElementById('cart-total')
 
-    console.log(cart_total)
-  }
 
-</script>
+
+
+
 
 {% endblock JS %}

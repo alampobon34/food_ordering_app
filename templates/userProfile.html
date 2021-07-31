@@ -135,27 +135,30 @@
                                      </tr>
                                    </thead>
                                    <tbody>
+                                          {% for order in orderList %}
                                      <tr>
-                                       <th scope="row">1</th>
-                                       <td>Mark</td>
-                                       <td>Otto</td>
-                                       <td>@mdo</td>
-                                       <td>@mdo</td>
+                                       <th scope="row">{{order.id}}</th>
+                                       <td>{{order.product.name}}</td>
+                                       <td>{{order.date_ordered}}</td>
+                                       {% if order.status == 'Pending' %}
+                                       <td><h6><span class="badge bg-warning">{{order.status}}</span></h6></td>
+                                       {% elif order.status == 'Delivered' %}
+                                       <td><h6><span class="badge bg-secondary">{{order.status}}</span></h6></td>
+                                       {% elif order.status == 'Cancel' %}
+                                       <td><h6><span class="badge bg-danger">{{order.status}}</span></h6></td>
+                                       {% else %}
+                                       <td><h6><span class="badge bg-success p-1">{{order.status}}</span></h6></td>
+
+
+                                       {% endif %}
+                                       <td>
+                                              {% if order.status == 'Pending' %}
+                                              <button type="button" class="btn btn-outline-success btn-sm bg-success text-light" >edit</button>
+                                              <button type="button" class="btn btn-outline-danger btn-sm bg-danger text-light" >delete</button>
+                                              {% endif %}
+                                       </td>
                                      </tr>
-                                     <tr>
-                                       <th scope="row">2</th>
-                                       <td>Jacob</td>
-                                       <td>Thornton</td>
-                                       <td>@fat</td>
-                                       <td>@mdo</td>
-                                     </tr>
-                                     <tr>
-                                       <th scope="row">3</th>
-                                       <td>Larry</td>
-                                       <td>the Bird</td>
-                                       <td>@twitter</td>
-                                       <td>@mdo</td>
-                                     </tr>
+                                     {% endfor %}
               
                                    </tbody>
                                  </table>

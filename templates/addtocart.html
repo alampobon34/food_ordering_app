@@ -7,8 +7,10 @@
    <h1 class="text-center mb-5 text-uppercase">Shopping Cart</h1>
    <div class="col-sm-8">
    <div class="card">
+    {% if cartObjects > 0%}
      {% for item in orderItems %}
     <div class="card-body">
+      
      <div class="row">
       <div class="col-sm-3 text-center align-self-center"><img src="{{item.product.image.url}}" alt="" srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"> </div>
       <div class="col-sm-9">
@@ -27,9 +29,11 @@
         <hr class="text-muted">
       </div>
      </div>
-     
     </div>
     {% endfor %}
+    {% else %}
+    <h5 class="text-center">Cart is empty</h5>
+    {% endif %}
     </div>
    </div>
  

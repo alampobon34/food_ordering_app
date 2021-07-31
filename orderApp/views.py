@@ -157,17 +157,22 @@ def check(request):
 
 
     if request.method=="POST":
-        customer = request.user.profile
-        order = Order.objects.get(customer=customer,is_complete=False)
-        address = request.POST["address"]
-        area = request.POST["area"]
-        houseNo = request.POST["houseNo"]
-        zipcode = request.POST["zipcode"]
+        try:
+            customer = request.user.profile
+            order = Order.objects.get(customer=customer,is_complete=False)
+            address = request.POST["address"]
+            area = request.POST["area"]
+            houseNo = request.POST["houseNo"]
+            zipcode = request.POST["zipcode"]
 
-        address = ShippingAddress.objects.create(customer=customer,order=order,address=address,area=area,houseNo=houseNo,zipcode=zipcode)
-        address.save()
-        order.is_complete=True
-        order.save()
+            address = ShippingAddress.objects.create(customer=customer,order=order,address=address,area=area,houseNo=houseNo,zipcode=zipcode)
+            address.save()
+            order.is_complete=True
+            order.save()
+            return redirect('home')
+        except:
+            pass
+
     
     context ={
         'order':order,
