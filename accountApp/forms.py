@@ -13,19 +13,19 @@ from django.forms import ModelForm, TextInput, NumberInput, EmailInput, Password
 
 class UserRegistrationForm(UserCreationForm):
     email=forms.EmailField(
-        widget=forms.TextInput(attrs={'placeholder': 'Email Address','type':'email'}),
+        widget=forms.TextInput(attrs={'placeholder': 'Email Address','type':'email','id':'email'}),
         required=True,
     )
     username = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Username','type':'text'}),
+        widget=forms.TextInput(attrs={'placeholder': 'Username','type':'text','id':'username'}),
         required=True
     )
     password1 = forms.CharField(
-        widget= forms.PasswordInput(attrs={'placeholder': '***********','type':'password'}),
+        widget= forms.PasswordInput(attrs={'placeholder': '***********','type':'password','id':'password1'}),
         required=True
     )
     password2 = forms.CharField(
-        widget= forms.PasswordInput(attrs={'placeholder': '***********','type':'password'}),
+        widget= forms.PasswordInput(attrs={'placeholder': '***********','type':'password','id':'password2'}),
         required=True
     )
     class Meta:
@@ -39,6 +39,19 @@ class UserRegistrationForm(UserCreationForm):
         self.fields["password1"].label = ""
         self.fields["email"].label = ""
         self.fields["password2"].label = ""
+
+
+    
+    def clean_password(self, *args, **kwargs):
+        password = self.cleaned_data['password1']
+        cpassword = self.cleaned_data['password2']
+        if len(password)<8:
+            raise forms.ValidationError("Password is too short...")
+        elif password == None:
+            raise forms.ValidationError("Password field can not be empty..")
+        elif (password!=cpassword):
+            raise forms.ValidationError("Password field does not match..")
+
 
 
 class LoginForm(forms.Form):

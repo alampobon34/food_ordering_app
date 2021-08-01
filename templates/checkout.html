@@ -10,20 +10,21 @@
     <hr>
       <div class="card p-0">
         <div class="card-body">
-          <form action="" method="post" novalidate id="shippingForm" name="ShippingForm" onsubmit="return ShippingAddress()">
+          {% if cartObjects > 0%}
+          <form action="" method="post" id="shipping-form" name="Shipping-form" novalidate onsubmit="return ShippingAddress()">
             {% csrf_token %}
-            <div class="mb-3 has-validation" id="add_address">
+            <div class="mb-3" id="add_address">
               <label for="address" class="form-label">Address*</label>
-              <input type="text" class="form-control" id="address" name="address" placeholder="Enter the address...">
+              <input type="text" class="form-control" id="address" name="address" placeholder="Enter the address..." required>
               <small id="emailHelp" class="form-text text-danger"></small>
               <div class="invalid-feedback">
                  <small id="emailHelp" class="form-text text-danger"></small>
                </div>
              </div>
 
-             <div class="mb-3 has-validation" id="add_area">
+             <div class="mb-3" id="add_area">
               <label for="area" class="form-label">Area*</label>
-              <input type="text" class="form-control" id="area" name="area" placeholder="Enter the area...">
+              <input type="text" class="form-control" id="area" name="area" placeholder="Enter the area..." required>
               <small id="emailHelp" class="form-text text-danger"></small>
               <div class="invalid-feedback">
                  <small id="emailHelp" class="form-text text-danger"></small>
@@ -32,9 +33,9 @@
 
              <div class="row">
                <div class="col-md-7">
-                <div class="mb-3 has-validation" id="add_houseNo">
+                <div class="mb-3" id="add_houseNo">
                   <label for="houseNo" class="form-label">House No*</label>
-                  <input type="text" class="form-control" id="houseNo" name="houseNo" placeholder="houseNo...">
+                  <input type="text" class="form-control" id="houseNo" name="houseNo" placeholder="houseNo..." required>
                   <small id="emailHelp" class="form-text text-danger"></small>
                   <div class="invalid-feedback">
                      <small id="emailHelp" class="form-text text-danger"></small>
@@ -42,9 +43,9 @@
                  </div>
                </div>
                <div class="col-md-5">
-                <div class="mb-3 has-validation" id="add_zipcode">
+                <div class="mb-3" id="add_zipcode">
                   <label for="zipcode" class="form-label">Zip Code*</label>
-                  <input type="number" class="form-control" id="zipcode" name="zipcode" placeholder="Zip Code....">
+                  <input type="number" class="form-control" id="zipcode" name="zipcode" placeholder="Zip Code...." required>
                   <small id="emailHelp" class="form-text text-danger"></small>
                   <div class="invalid-feedback">
                      <small id="emailHelp" class="form-text text-danger"></small>
@@ -56,8 +57,10 @@
              <div class="form-group">
               <input type="submit" class="form-control btn-outline-secondary">
               </div>
-            
           </form>
+          {% else %}
+          <h5 class="text-center">No Item in the cart</h5>
+          {% endif %}
         </div>
       </div>
   </div>
@@ -105,3 +108,11 @@
   </div>
 </div>
 {% endblock body %}
+
+{% block JS%}
+<script>
+
+
+</script>
+
+{% endblock JS %}

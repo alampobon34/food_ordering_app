@@ -10,6 +10,8 @@ def all_restaurants(request):
 
 
 
+
+
 def restaurant_menu(request,id):
     cartItems=0
     category = Category.objects.filter(restaurant_id=id)

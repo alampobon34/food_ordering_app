@@ -153,14 +153,29 @@ def mobile(request):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 @login_required(login_url="login")
 def change_password(request):
+    orderList = []
+    
     if request.user.is_authenticated:
         try:
             customer = request.user.profile
             order= Order.objects.get(customer=customer,is_complete=False)
             orderItems = OrderItem.objects.filter(order=order)
             cartObjects = orderItems.count()
+            orderList = Order.objects.filter(customer=customer)
+            print(orderList)
         except:
             cartObjects = 0
 
@@ -183,8 +198,18 @@ def change_password(request):
     else:
         form = PasswordChangingForm(user=request.user)
     context = {'form' : form,
-                'cartObjects':cartObjects}
+                'cartObjects':cartObjects,'orderList':orderList}
+    print(orderList)
     return render(request,'changepassword.html',context)
+
+
+
+
+
+
+
+
+
 
 
 
@@ -199,7 +224,9 @@ def cp(request):
             form = PasswordChangeForm(user=request.user,data=request.POST)
     else:
         form = PasswordChangeForm(user=request.user)
-    context = {'form' : form}
+    context = {'form' : form,
+
+                }
     return render(request,'userProfile.html',context)
 
 
@@ -212,6 +239,7 @@ def userProfile(request):
             order= Order.objects.get(customer=customer,is_complete=False)
             orderItems = OrderItem.objects.filter(order=order)
             cartObjects = orderItems.count()
+            
         except:
             cartObjects = 0
 
@@ -234,13 +262,18 @@ def userProfile(request):
                         'p_form':p_form,
                         'orderItems':orderItems,
                         'grand_total':grand_total,
-                        'cartItems':cartItems}
+                        'cartItems':cartItems,
+                        'orderList':orderList}
             return render(request, 'userProfile.html',context)
     else:
+        orderList = Order.objects.filter(customer=customer)
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
         context = {'u_form' : u_form,'p_form':p_form,'address':address,
-                    'cartObjects':cartObjects,}
+                    'cartObjects':cartObjects,
+                    'orderList':orderList}
+
+        print(orderList)
         return render(request, 'userProfile.html',context)
 
 

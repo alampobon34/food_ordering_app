@@ -62,27 +62,6 @@ def updateItem(request):
     return JsonResponse("Item was added", safe=False)
 
 
-# def updateItem(request):
-#     data = json.loads(request.body)
-#     item_id = data['item_id']
-#     quantity = data['quantity']
-#     action = data['action']
-#     print(item_id)
-
-#     customer = request.user.profile
-#     fooditem = FoodItem.objects.get(id=item_id)
-#     order, created = Order.objects.get_or_create(customer=customer,status='Pending')
-#     orderItem, created = OrderItem.objects.get_or_create(order=order,product=fooditem,quantity=quantity)
-#     if action =='add':
-#         orderItem.quantity = (orderItem.quantity +1)
-#     elif action == 'remove':
-#         orderItem.quantity = (orderItem.quantity -1)
-#     elif action == 'delete':
-#         orderItem.quantity=0
-#     orderItem.save()
-#     if orderItem.quantity <=0:
-#         orderItem.delete()
-#     return JsonResponse("item was added",safe=False)
 
 
 def checkout(request):
@@ -157,17 +136,22 @@ def check(request):
 
 
     if request.method=="POST":
-        customer = request.user.profile
-        order = Order.objects.get(customer=customer,is_complete=False)
-        address = request.POST["address"]
-        area = request.POST["area"]
-        houseNo = request.POST["houseNo"]
-        zipcode = request.POST["zipcode"]
+        try:
+            customer = request.user.profile
+            order = Order.objects.get(customer=customer,is_complete=False)
+            address = request.POST["address"]
+            area = request.POST["area"]
+            houseNo = request.POST["houseNo"]
+            zipcode = request.POST["zipcode"]
 
-        address = ShippingAddress.objects.create(customer=customer,order=order,address=address,area=area,houseNo=houseNo,zipcode=zipcode)
-        address.save()
-        order.is_complete=True
-        order.save()
+            address = ShippingAddress.objects.create(customer=customer,order=order,address=address,area=area,houseNo=houseNo,zipcode=zipcode)
+            address.save()
+            order.is_complete=True
+            order.save()
+            return redirect('home')
+        except:
+            pass
+
     
     context ={
         'order':order,
