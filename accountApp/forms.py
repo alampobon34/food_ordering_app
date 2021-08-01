@@ -28,6 +28,7 @@ class UserRegistrationForm(UserCreationForm):
         widget= forms.PasswordInput(attrs={'placeholder': '***********','type':'password','id':'password2'}),
         required=True
     )
+	
     class Meta:
         model=User
         fields=['username','email','password1','password2']
@@ -174,6 +175,8 @@ class ProfileUpdateForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_show_labels = False
         self.fields["image"].label = ""
+
+
 
 CITY = [
     ('Dhaka', 'Dhaka'),

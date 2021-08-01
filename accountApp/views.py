@@ -33,20 +33,6 @@ def index(request):
     return render(request,'home.html',context) 
 
 
-# def login_page(request):
-#     message = None
-#     if request.POST:
-#         email = request.POST.get('email')
-#         password = request.POST.get('password')
-#         user = authenticate(request,email=email, password=password)
-#         print(email,password)
-#         if user is not None:
-#             login(request,user)
-#             return redirect('home')
-#         else:
-#             return render(request, 'login.html')
-#     return render(request, 'login.html')
-
 
 
 def login_page(request):
@@ -95,6 +81,8 @@ def register(request):
     form = UserRegistrationForm()
     context ={'form':form,'cartObjects':cartObjects}
     return render(request, 'customerregistration.html',context)
+
+
 
 
 
@@ -306,3 +294,7 @@ def address_update(request):
     context = {'a_form' : a_form,
             'cartObjects':cartObjects,}
     return render(request, 'addressUpdate.html',context)
+	
+	
+	
+	
