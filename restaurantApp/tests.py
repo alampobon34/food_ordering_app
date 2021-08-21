@@ -1,7 +1,11 @@
-from django.test import TestCase
+from restaurantApp import urls
+from django.test import SimpleTestCase
+from django.test import TestCase, Client
 from restaurantApp.models import *
 from restaurantApp.views import *
 from django.urls import reverse, resolve
+import json
+
 #TestingModel
 class RestaurantTest(TestCase):
 
@@ -48,8 +52,7 @@ class FoodItemTest(TestCase):
     def test_fooditem(self):
         self.assertEqual(self.fooditem1.name,"pasta")
 
-#TestingURLS
-
+#TestingUrls
 
 class TestUrls(TestCase):
 
@@ -57,6 +60,24 @@ class TestUrls(TestCase):
         urls = reverse('all-restaurants')
         self.assertEquals(resolve(urls).func, all_restaurants)
 
-    def test_restaurants_menu(self):
+    def test_restaurants_menuUrl(self):
         urls = reverse('restaurant-menu', args=[1])
         self.assertEquals(resolve(urls).func, restaurant_menu)
+
+
+#TestingViews
+
+class TestViews(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user('kashfia', 'ksaif2010@gmail.com', 'admin123')
+        self.client = Client()
+        self.restaurant_menu_urls = reverse('restaurant-menu', args=[1])
+
+    def test_View_Restaurant_Menu(self):
+        response = self.client.get('self.restaurant-menu')
+        self.assertEqual(response.status_code, 404 , "Restaurant View Failed")
+        
+
+class Views_Test(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user('admin1', 'admin@gmail.com',  'admin123')
