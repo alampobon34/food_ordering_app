@@ -66,7 +66,22 @@ class TestUrls(TestCase):
         urls = reverse('login')
         self.assertEquals(resolve(urls).func, login_page)
 
+    def test_registerUrl(self):
+        urls = reverse('register')
+        self.assertEquals(resolve(urls).func, register)
+
+    def test_logoutUrl(self):
+        urls = reverse('logout')
+        self.assertEquals(resolve(urls).func, logout_user)
+
     def test_addressUrl(self):
         urls = reverse('address')
         self.assertEquals(resolve(urls).func, address)
 
+    def test_address_updateUrl(self):
+        urls = reverse('address-update')
+        self.assertEquals(resolve(urls).func, address_update)
+
+    def test_buynowUrl(self):
+        urls = reverse('buynow')
+        self.assertEquals(resolve(urls).func, buy_now)
