@@ -1,5 +1,7 @@
 from django.test import TestCase
 from restaurantApp.models import *
+from restaurantApp.views import *
+from django.urls import reverse, resolve
 #TestingModel
 class RestaurantTest(TestCase):
 
@@ -47,4 +49,14 @@ class FoodItemTest(TestCase):
         self.assertEqual(self.fooditem1.name,"pasta")
 
 #TestingURLS
-#         
+
+
+class TestUrls(TestCase):
+
+    def test_all_restaurantsUrl(self):
+        urls = reverse('all-restaurants')
+        self.assertEquals(resolve(urls).func, all_restaurants)
+
+    def test_restaurants_menu(self):
+        urls = reverse('restaurant-menu', args=[1])
+        self.assertEquals(resolve(urls).func, restaurant_menu)
