@@ -157,19 +157,6 @@ def mobile(request):
     context = {'a_form' : a_form}
     return render(request, 'mobile.html',context)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 @login_required(login_url="login")
 def change_password(request):
     orderList = []
@@ -207,17 +194,6 @@ def change_password(request):
                 'cartObjects':cartObjects,'orderList':orderList}
     print(orderList)
     return render(request,'changepassword.html',context)
-
-
-
-
-
-
-
-
-
-
-
 
 def cp(request):
     
