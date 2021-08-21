@@ -56,7 +56,7 @@ class Views_Test(TestCase):
 class Views_Test(TestCase):
     def setUp(self):
         self.user = User.objects.create_user('admin1', 'admin@gmail.com',  'admin123')
-        self.
+    
 
 
 
