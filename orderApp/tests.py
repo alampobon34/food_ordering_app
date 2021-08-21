@@ -8,9 +8,9 @@ from orderApp.models import *
 from accountApp import models
 from restaurantApp import models
 from django.http import HttpRequest
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 
-from billing.forms import InvoiceForm
+#from billing.forms import InvoiceForm
 
 # Create your tests here.
 
