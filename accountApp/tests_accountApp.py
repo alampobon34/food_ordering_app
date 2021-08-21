@@ -55,3 +55,18 @@ class ProfileTest(TestCase):
         )
     def test_profile(self):
         self.assertEqual(self.profile1.user.email,"kashfia@gmail.com")   
+
+#TestingUrls
+class TestUrls(TestCase):
+    def test_homeUrl(self):
+        urls = reverse('home')
+        self.assertEquals(resolve(urls).func, index)
+
+    def test_loginUrl(self):
+        urls = reverse('login')
+        self.assertEquals(resolve(urls).func, login_page)
+
+    def test_addressUrl(self):
+        urls = reverse('address')
+        self.assertEquals(resolve(urls).func, address)
+
