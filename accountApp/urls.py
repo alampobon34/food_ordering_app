@@ -18,5 +18,4 @@ urlpatterns = [
     path('mobile/',mobile,name='mobile'),
     path('cp/',cp,name='cp'),
     path('address-update/',address_update,name="address-update"),
-    #path('pills/',pills,name='pills'),
 ]

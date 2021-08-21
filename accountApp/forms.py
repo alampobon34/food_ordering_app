@@ -28,6 +28,7 @@ class UserRegistrationForm(UserCreationForm):
         widget= forms.PasswordInput(attrs={'placeholder': '***********','type':'password','id':'password2'}),
         required=True
     )
+	
     class Meta:
         model=User
         fields=['username','email','password1','password2']
@@ -128,9 +129,6 @@ class PasswordChangingForm(PasswordChangeForm):
 
 
 
-
-
-
 class UserUpdateForm(UserChangeForm):
     
     first_name =forms.CharField(
@@ -178,6 +176,8 @@ class ProfileUpdateForm(forms.ModelForm):
         self.helper.form_show_labels = False
         self.fields["image"].label = ""
 
+
+
 CITY = [
     ('Dhaka', 'Dhaka'),
     ('Mymensign', 'Mymensign'),
@@ -194,11 +194,6 @@ class AddressUpdateForm(forms.ModelForm):
     #address_type = forms.TextInput()
     # address = forms.CharField(widget=forms.Textarea(attrs={'class' : 'form-control'}))
     # houseNo = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    # roadNo = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    # zipCode = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-
-
-
 
     class Meta:
         model = Address
