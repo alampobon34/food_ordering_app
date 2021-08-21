@@ -1,11 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
-
-
-
-
 
 class Restaurant(models.Model):
 
@@ -24,7 +18,7 @@ class Category(models.Model):
     image = models.ImageField(blank=True,null=True,upload_to='Category-images/')
 
     def __str__(self):
-        return self.name
+        return "Restaurant Name: "+ self.restaurant.name + "    "+ "Category:  " +self.name
     
     @property
     def get_restaurant(self):

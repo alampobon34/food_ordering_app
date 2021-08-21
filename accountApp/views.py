@@ -14,22 +14,28 @@ from orderApp.models import *
 
 def index(request):
     restaurants = Restaurant.objects.all()
+    items = FoodItem.objects.all()
     if request.user.is_authenticated:
         try:
+            restaurants = Restaurant.objects.all()
             customer = request.user.profile
             order= Order.objects.get(customer=customer,is_complete=False)
             orderItems = OrderItem.objects.filter(order=order)
             cartObjects = orderItems.count()
         except:
+            restaurants = Restaurant.objects.all()
             cartObjects = 0
 
     else:
+        restaurants = Restaurant.objects.all()
         cartObjects = 0
     context = {
         'restaurants':restaurants,
         'cartObjects':cartObjects,
+        'items':items,
 
     }
+    print(restaurants)
     return render(request,'home.html',context) 
 
 
