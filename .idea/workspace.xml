@@ -21,7 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="af1e853a-c2eb-4aac-96a8-c9939d77039a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/localStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/js/localStorage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orderApp/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/orderApp/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurantApp/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/restaurantApp/tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

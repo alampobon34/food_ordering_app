@@ -1,53 +1,9 @@
 from django.test import TestCase
+from orderApp import views
 from restaurantApp.models import *
 
 
 # Create your tests here.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
