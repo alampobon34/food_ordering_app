@@ -83,7 +83,7 @@ def register(request):
 
 def logout_user(request):
     logout(request)
-    messages.success(request,'Logout Successfully....!!')
+    #messages.success(request,'Logout Successfully....!!')
     return redirect('login')
 
 

@@ -233,6 +233,28 @@
     <script type="text/javascript" src="{% static 'js/jquery.register.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.change_password.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.checkout.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    {% for msg in messages %}
+      {% if msg.tags == 'success' %}
+        <script>
+          Swal.fire({
+            icon: 'success',
+            title: 'Congratulations!!',
+            text: '{{msg}}',
+          })
+        </script>
+      {% else %}
+        <script>
+          Swal.fire({
+            icon: 'error',
+            title: 'Opps!!',
+            text: '{{msg}}',
+          })
+        </script>
+      {% endif %}
+
+    {% endfor %}
 
     <script type="text/JavaScript">
       $(document).ready(function(){
@@ -242,9 +264,6 @@
         }
       })
     </script>
-
-
-
 
     {% block JS %}{% endblock JS %}
   </body>

@@ -7,10 +7,12 @@ from django.http import JsonResponse
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
 
 
 def cart(request):
+    
     if request.user.is_authenticated:
         try:
             customer = request.user.profile
@@ -107,7 +109,7 @@ def checkout(request):
         orderItems=[]
         #cartItems = order['get_cart_item']
 
-    if request.method=="POST":
+    if request.method=="POST" and request.user.is_authenticated:
         address = request.POST["address"]
         area = request.POST["area"]
         houseNo = request.POST["houseNo"]
@@ -120,7 +122,8 @@ def checkout(request):
         order.save()
         address= ShippingAddress.objects.create(customer=customer,order=order,address=address,area=area,houseNo=houseNo,zipcode=zipcode)
         address.save()
-        return redirect('checkout')
+        messages.error(request,'Invalid Email or Password....!!')
+        return redirect('cart')
 
     context={
         'order':order,
@@ -169,7 +172,8 @@ def check(request):
             address.save()
             order.is_complete=True
             order.save()
-            return redirect('home')
+            messages.success(request,'Your Order has been placed...')
+            return redirect('checkout')
         except:
             pass
 
