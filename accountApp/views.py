@@ -11,47 +11,28 @@ from orderApp.models import *
 
 # Create your views here.
 
+
 def index(request):
     restaurants = Restaurant.objects.all()
-    items = FoodItem.objects.all()
     if request.user.is_authenticated:
         try:
-            restaurants = Restaurant.objects.all()
             customer = request.user.profile
             order= Order.objects.get(customer=customer,is_complete=False)
             orderItems = OrderItem.objects.filter(order=order)
             cartObjects = orderItems.count()
         except:
-            restaurants = Restaurant.objects.all()
             cartObjects = 0
 
     else:
-        restaurants = Restaurant.objects.all()
         cartObjects = 0
     context = {
         'restaurants':restaurants,
         'cartObjects':cartObjects,
-        'items':items,
 
     }
-    print(restaurants)
     return render(request,'home.html',context) 
 
 
-
-# def login_page(request):
-#     message = None
-#     if request.POST:
-#         email = request.POST.get('email')
-#         password = request.POST.get('password')
-#         user = authenticate(request,email=email, password=password)
-#         print(email,password)
-#         if user is not None:
-#             login(request,user)
-#             return redirect('home')
-#         else:
-#             return render(request, 'login.html')
-#     return render(request, 'login.html')
 
 
 def login_page(request):
@@ -102,10 +83,15 @@ def register(request):
     return render(request, 'customerregistration.html',context)
 
 
+
+
+
 def logout_user(request):
     logout(request)
     messages.success(request,'Logout Successfully....!!')
     return redirect('login')
+
+
 
 
 def profile(request):
@@ -126,8 +112,12 @@ def change_password(request):
     return render(request,'changepassword.html')
 
 
+
 def buy_now(request):
     return render(request,'buynow.html')
+
+
+
 
 
 def details(request):
@@ -148,6 +138,18 @@ def mobile(request):
     a_form = AddressUpdateForm(instance=request.user.address)
     context = {'a_form' : a_form}
     return render(request, 'mobile.html',context)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @login_required(login_url="login")
@@ -189,6 +191,16 @@ def change_password(request):
     return render(request,'changepassword.html',context)
 
 
+
+
+
+
+
+
+
+
+
+
 def cp(request):
     
     if request.method== "POST":
@@ -204,6 +216,7 @@ def cp(request):
 
                 }
     return render(request,'userProfile.html',context)
+
 
 
 @login_required(login_url="login")
@@ -281,3 +294,7 @@ def address_update(request):
     context = {'a_form' : a_form,
             'cartObjects':cartObjects,}
     return render(request, 'addressUpdate.html',context)
+	
+	
+	
+	
