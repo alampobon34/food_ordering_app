@@ -33,8 +33,6 @@ def index(request):
     return render(request,'home.html',context) 
 
 
-
-
 def login_page(request):
     cartObjects = 0
     if request.POST:
@@ -83,15 +81,10 @@ def register(request):
     return render(request, 'customerregistration.html',context)
 
 
-
-
-
 def logout_user(request):
     logout(request)
     messages.success(request,'Logout Successfully....!!')
     return redirect('login')
-
-
 
 
 def profile(request):
@@ -117,9 +110,6 @@ def buy_now(request):
     return render(request,'buynow.html')
 
 
-
-
-
 def details(request):
     return render(request,'productdetail.html')
 
@@ -138,18 +128,6 @@ def mobile(request):
     a_form = AddressUpdateForm(instance=request.user.address)
     context = {'a_form' : a_form}
     return render(request, 'mobile.html',context)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @login_required(login_url="login")
@@ -189,16 +167,6 @@ def change_password(request):
                 'cartObjects':cartObjects,'orderList':orderList}
     print(orderList)
     return render(request,'changepassword.html',context)
-
-
-
-
-
-
-
-
-
-
 
 
 def cp(request):
@@ -294,7 +262,5 @@ def address_update(request):
     context = {'a_form' : a_form,
             'cartObjects':cartObjects,}
     return render(request, 'addressUpdate.html',context)
-	
-	
 	
 	
