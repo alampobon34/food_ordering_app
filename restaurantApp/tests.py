@@ -4,6 +4,10 @@ from orderApp import views
 from restaurantApp.models import *
 
 
+
+
+
+
 # Create your tests here.
 class view_Test(TestCase):
     def setUp(self):
@@ -20,65 +24,4 @@ class view_Test(TestCase):
         response = self.client.get(self.restaurant_menu_url)
         self.assertEqual(response.status_code, 200, "restaurant menu view failed")
         self.assertTemplateUsed(response, 'restaurant-menu.html', "Checking template of restaurant")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
