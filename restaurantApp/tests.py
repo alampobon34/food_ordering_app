@@ -1,8 +1,4 @@
-from django.test import TestCase
-from restaurantApp.models import *
 
-
-# Create your tests here.
 
 
 
