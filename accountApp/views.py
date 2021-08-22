@@ -8,6 +8,8 @@ from django.contrib import messages
 from accountApp.models import *
 from restaurantApp.models import *
 from orderApp.models import *
+from django.http import JsonResponse
+import json
 
 # Create your views here.
 
@@ -263,4 +265,13 @@ def address_update(request):
             'cartObjects':cartObjects,}
     return render(request, 'addressUpdate.html',context)
 	
-	
+
+
+
+def delete_order(request):
+    data = json.loads(request.body)
+    order_id = data["order_id"]
+    customer = request.user.profile
+    order = Order.objects.filter(id=order_id)
+    order.delete()
+    return JsonResponse("Item was added", safe=False)
