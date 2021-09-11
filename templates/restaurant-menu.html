@@ -16,15 +16,16 @@
     
     <div class="container mt-4">
       <hr>
-      <h3>{{cat.name}}</h3>
+      <h3 class="bg-secondary text-center text-light mx-auto p-2">{{cat.name}}</h3>
       <div class="row">
         {% for fooditem in cat.fooditem_set.all %}
-        <div class="col-md-4">
+        <div class="col-md-4 mt-2">
           <div class="card " style="width: 18rem;">
             <img class="card-img-top" src="{{fooditem.image.url}}">
-            <div class="card-body">
+            <div class="card-body text-center">
               <h5 class="card-title">{{fooditem.name}}</h5>
-              <span>BDT: {{fooditem.price}}<br></span>
+              <span class="text-danger"><br></span>
+              <span class="text-danger font-weight-bold">BDT: {{fooditem.price}}<br></span>
               <div>
                 <button data-fooditem="{{fooditem.id}}" data-action="add" class="btn btn-outline-secondary mt-2 add-btn update-cart" id="{{fooditem.id}}">Add to cart</button>
               </div>

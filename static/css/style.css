@@ -51,3 +51,20 @@ em{
     color:red;
     margin-top:20px;
   }
+
+
+.category li{
+    border: 0.5px solid #b5b6b9;
+}
+
+
+.category .rest{
+    color: #353535;
+
+}
+
+
+.category .rest:hover{
+    color: #FF6F61;
+
+}

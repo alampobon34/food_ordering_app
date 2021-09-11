@@ -1,0 +1,51 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block title %}Search Result{% endblock title %}
+
+
+{% block body %}
+
+<div class="container">
+    <div class="row mt-3">
+        <h3 class="">Restaurant List</h3>
+        <div class="col-lg-3 category">
+                <nav class="navbar bg-light">
+                    <ul class=" container navbar-nav">
+                        {% for rest in restaurant %}
+                        <li class="nav-item container">
+                            <a class="nav-link text-center rest" href="{% url 'restaurant-menu' id=rest.id %}">{{rest.name}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+        </div>
+
+        <div class="col">
+            <div class="row">
+                {% for fooditem in results %}
+                <div class="col-md-4 m-2">
+                  <div class="card " style="width: 18rem;">
+                    <img class="card-img-top" src="{{fooditem.image.url}}">
+                    <div class="card-body text-center">
+                      <h5 class="card-title">{{fooditem.name}}</h5>
+                      <span class="text-danger">BDT: {{fooditem.price}}<br></span>
+                      <div>
+                        <button data-fooditem="{{fooditem.id}}" data-action="add" class="btn btn-outline-secondary mt-2 add-btn update-cart" id="{{fooditem.id}}">Add to cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}
+
+
+{% block JS %}
+<!-- <script type="text/javascript" src="{% static 'js/localStorage.js' %}" async></script> -->
+<script type="text/javascript" src="{% static 'js/cart.js' %}" async></script>
+{% endblock JS%}

@@ -65,7 +65,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">Food Ordering</a>
+        <a class="navbar-brand" href="{% url 'home' %}">FOOD ORDERING APP</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -79,9 +79,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
+            </li> -->
             <!-- <li class="nav-item dropdown">
              <a class="nav-link dropdown-toggle text-white" href="#" id="electronicsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                Electronics
@@ -101,12 +101,15 @@
              </ul>
            </li> -->
           </ul>
-          <form class="d-flex">
+          <form class="d-flex" action="/item-search" method="get">
+            {% csrf_token %}
             <input
               class="form-control me-1"
               type="search"
-              placeholder="Search Items/Restaurant..."
+              placeholder="Search Food Items here..."
               aria-label="Search"
+              name="query"
+              id="query"
             />
             <button class="btn btn-outline-danger" type="submit">
               <i class="fas fa-search"></i>
@@ -265,6 +268,11 @@
       })
     </script>
 
-    {% block JS %}{% endblock JS %}
+    {% block JS %}
+
+    
+    
+    
+    {% endblock JS %}
   </body>
 </html>

@@ -19,7 +19,7 @@
         <div class="my-3">
          <label for="quantity">Quantity:</label>
          <button  class="btn update-cart" data-fooditem="{{item.product.id}}" data-action="remove"><i class="fas fa-minus-square fa-lg" ></i></button>
-          <span id="quantity">{{item.quantity}}</span>
+          <span data-quantity="{{item.quantity}}" id="quantity">{{item.quantity}}</span>
          <button  class="btn update-cart" data-fooditem="{{item.product.id}}" data-action="add"><i class="fas fa-plus-square fa-lg" ></i></button>
         </div> 
         <div class="d-flex justify-content-between">

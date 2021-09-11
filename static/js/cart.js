@@ -28,17 +28,19 @@ function updateUserOrder(item_id, action) {
 for (var i = 0; i < updateBtns.length; i++) {
   var button = updateBtns[i];
   
-  button.addEventListener("click", function () {
+  button.addEventListener("click", function (e) {
     //console.log("button clicked")
     var item_id = this.dataset.fooditem;
     var action = this.dataset.action;
+
     if(action=='delete'){
-      var con = confirm("Do you really want to delete this item?")
-      if(con==true){
-        action='delete'
-      }else{
-        action=''
-      }
+        var con = confirm("Do you really want to delete this item?")
+
+        if(con==true){
+          action='delete'
+        }else{
+          action=''
+        }
     }
     if (user == "AnonymousUser") {
       console.log("not logged in");
