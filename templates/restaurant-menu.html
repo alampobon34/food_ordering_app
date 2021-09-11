@@ -8,7 +8,7 @@
   <div class="jumbotron mt-3">
     <img class="d-block w-100" src="{% static 'images/banner/restaurant.jpg' %}" alt="...">
     <h1 class="display-6 text-center">{{restaurant.name}}- {{restaurant.address}}</h1>
-    <p class="lead text-center">Reviews: {{ result}}</p>
+    <p class="lead text-center">Restaurant Rating : {{ result}}</p>
     <!-- <hr class="my-4"> -->
   </div>
   <div class="container">
@@ -38,7 +38,18 @@
     </div>
     {% endfor %}
   </div>
+
+  <div class="container mt-2">
+    <h3>Reviews: </h3>
+    {% for com in comment %}
+    <h6 class="text-bold">{{com.comment}}</h6>
+    <span>{{com.created_at}}</span><br>
+    <hr>
+    {% endfor %}
+  </div>
 </div>
+
+
 {% endblock body %}
 
 
@@ -46,4 +57,3 @@
 <!-- <script type="text/javascript" src="{% static 'js/localStorage.js' %}" async></script> -->
 <script type="text/javascript" src="{% static 'js/cart.js' %}" async></script>
 {% endblock JS%}
-

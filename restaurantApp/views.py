@@ -16,6 +16,7 @@ def restaurant_menu(request,id):
     restaurant = Restaurant.objects.get(id=id)
     item = FoodItem.objects.all()
     reviews = Review.objects.filter(restaurant=restaurant)
+    comment = Review.objects.filter(restaurant=restaurant)
     print(reviews)
     result = 0.00
     for rev in reviews:
@@ -41,6 +42,7 @@ def restaurant_menu(request,id):
         'restaurant':restaurant,
         'cartObjects':cartObjects,
         'result':result,
+        'comment':comment,
     }
     return render(request,'restaurant-menu.html',context)
 
