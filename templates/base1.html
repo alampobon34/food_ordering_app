@@ -101,12 +101,15 @@
              </ul>
            </li> -->
           </ul>
-          <form class="d-flex">
+          <form class="d-flex" action="/item-search" method="get">
+            {% csrf_token %}
             <input
               class="form-control me-1"
               type="search"
-              placeholder="Search Items/Restaurant..."
+              placeholder="Search Food Items here..."
               aria-label="Search"
+              name="query"
+              id="query"
             />
             <button class="btn btn-outline-danger" type="submit">
               <i class="fas fa-search"></i>
