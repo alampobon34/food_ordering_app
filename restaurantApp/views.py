@@ -15,6 +15,13 @@ def restaurant_menu(request,id):
     category = Category.objects.filter(restaurant_id=id)
     restaurant = Restaurant.objects.get(id=id)
     item = FoodItem.objects.all()
+    reviews = Review.objects.filter(restaurant=restaurant)
+    print(reviews)
+    result = 0.00
+    for rev in reviews:
+        result += rev.rate / len(reviews)
+
+    result = round(result, 2)
 
 
     if request.user.is_authenticated:
@@ -33,6 +40,7 @@ def restaurant_menu(request,id):
         'category':category,
         'restaurant':restaurant,
         'cartObjects':cartObjects,
+        'result':result,
     }
     return render(request,'restaurant-menu.html',context)
 

@@ -21,3 +21,8 @@ class FoodItemAdmin(admin.ModelAdmin):
     list_filter = ['name']
 
 admin.site.register(FoodItem,FoodItemAdmin)
+
+
+
+
+admin.site.register(Review)
