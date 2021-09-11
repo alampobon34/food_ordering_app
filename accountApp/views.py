@@ -35,6 +35,7 @@ def index(request):
     return render(request,'home.html',context) 
 
 
+
 def login_page(request):
     cartObjects = 0
     if request.POST:
@@ -60,6 +61,7 @@ def login_page(request):
         'cartObjects':cartObjects
     }
     return render(request, 'login.html', context)
+
 
 
 def register(request):
@@ -94,42 +96,6 @@ def profile(request):
 
     return render(request,'profile.html')
 
-
-def orders(request):
-    return render(request,'orders.html')
-
-def address(request):
-    return render(request,'address.html')
-
-
-
-def change_password(request):
-    return render(request,'changepassword.html')
-
-
-
-def buy_now(request):
-    return render(request,'buynow.html')
-
-
-def details(request):
-    return render(request,'productdetail.html')
-
-
-def mobile(request):
-    if request.method=="POST":
-        a_form = AddressUpdateForm(request.POST,instance=request.user.address)
-        if a_form.is_valid():
-            a_form.save()
-            return redirect('userProfile')
-        else:
-            a_form = AddressUpdateForm(request.POST,instance=request.user.address)
-            context = {'a_form' : a_form}
-            return render(request,'profile.html',context)
-
-    a_form = AddressUpdateForm(instance=request.user.address)
-    context = {'a_form' : a_form}
-    return render(request, 'mobile.html',context)
 
 
 @login_required(login_url="login")

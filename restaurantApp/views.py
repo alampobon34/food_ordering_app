@@ -15,6 +15,8 @@ def restaurant_menu(request,id):
     category = Category.objects.filter(restaurant_id=id)
     restaurant = Restaurant.objects.get(id=id)
     item = FoodItem.objects.all()
+
+
     if request.user.is_authenticated:
         try:
             customer = request.user.profile
