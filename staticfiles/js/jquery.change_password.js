@@ -12,7 +12,7 @@ $(function () {
     );
 
   
-  
+
     var $changePasswordForm = $('form[name="changePasswordForm"]');
   
     if ($changePasswordForm.length) {
@@ -30,7 +30,7 @@ $(function () {
           new_password2:{
               required: true,
               minValue: true,
-              equalTo: "#new_password1"
+              //equalTo: "#new_password1"
           }
         },
         messages: {
@@ -42,7 +42,7 @@ $(function () {
           },
           new_password2:{
             required: "<em>**Confirm password field is required**</em>",
-            equalTo: "<em>**Confirm password field does not match**</em>",
+            //equalTo: "<em>**Confirm password field does not match**</em>",
           }
         },
       });

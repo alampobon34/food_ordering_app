@@ -2,7 +2,7 @@ var updateBtns = document.getElementsByClassName("update-cart");
 var obj;
 
 function updateUserOrder(item_id, action) {
-  console.log("User is logged in sending data");
+  //console.log("User is logged in sending data");
 
   var url = "/update_item/"
 

@@ -87,55 +87,6 @@ def updateItem(request):
 #     return JsonResponse("item was added",safe=False)
 
 
-def checkout(request):
-    if request.user.is_authenticated:
-        try:
-            customer = request.user.profile
-            order = Order.objects.get(customer=customer,is_complete=False)
-            orderItems = OrderItem.objects.filter(order=order)
-            grand_total = order.grand_total
-            cartObjects = orderItems.count()
-        except:
-            print('cart is empty..')
-            cartObjects = 0
-            grand_total=0
-            order = {'get_cart_total': 0, 'get_cart_item': 0}
-            orderItems=[]
-            #cartItems = order['get_cart_item']
-    else:
-        cartObjects = 0
-        grand_total=0
-        order = {'get_cart_total': 0, 'get_cart_item': 0}
-        orderItems=[]
-        #cartItems = order['get_cart_item']
-
-    if request.method=="POST" and request.user.is_authenticated:
-        address = request.POST["address"]
-        area = request.POST["area"]
-        houseNo = request.POST["houseNo"]
-        zipcode = request.POST["zipcode"]
-
-        customer = request.user.profile
-        order = Order.objects.get(customer=customer,is_complete=False)
-        orderItems = OrderItem.objects.filter(order=order)
-        order.is_complete=True
-        order.save()
-        address= ShippingAddress.objects.create(customer=customer,order=order,address=address,area=area,houseNo=houseNo,zipcode=zipcode)
-        address.save()
-        messages.error(request,'Invalid Email or Password....!!')
-        return redirect('cart')
-
-    context={
-        'order':order,
-        'grand_total':grand_total,
-        'orderItems':orderItems,
-        'cartObjects':cartObjects,
-    }
-    return render(request,'checkout.html',context)
-
-
-
-
 def check(request):
     if request.user.is_authenticated:
         try:
